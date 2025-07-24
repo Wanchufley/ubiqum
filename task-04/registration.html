@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Registration Form</title>
+  <link href="css/brs_style_03.css" rel="stylesheet">
+</head>
+
+<body>
+  <div class="page">
+    <h1>Bike Race Series</h1>
+    <div class="menu-container">
+      <nav class="menu">
+        <a href="./index.html">Home</a>
+        <a href="./about.html">About</a>
+        <a href="./contact.html">Contact</a>
+        <a href="./general-information.html">General Information</a>
+        <a href="./safety-rules.html">Safety Rules</a>
+        <a href="./registration.html">Registration Form</a>
+      </nav>
+    </div>
+    <div class="banner">
+      <h1>Registration Form</h1>
+    </div>
+    <div class="content">
+      <div class="content-item">
+        <div class="text">
+          <form action="show_data.html" method="get">
+            <h2>Personal Information</h2>
+            <label for="first_name">First Name:</label><br>
+            <input type="text" id="first_name" name="first_name"><br><br>
+            <label for="lastName">Last Name:</label><br>
+            <input type="text" id="lastName" name="lastName"><br><br>
+            <label for="streetAddress">Street Address:</label><br>
+            <input type="text" id="streetAddress" name="streetAddress"><br><br>
+            <label for="city">City:</label><br>
+            <input type="text" id="city" name="city"><br><br>
+            <label for="postalCode">Postal Code:</label><br>
+            <input type="text" id="postalCode" name="postalCode"><br><br>
+            <label for="country">Country:</label><br>
+            <input type="text" id="country" name="country"><br><br>
+            <label for="dateOfBirth">Date of Birth (DD/MM/YYYY):</label><br>
+            <input type="date" id="dateOfBirth" name="dateOfBirth"><br><br>
+            <label for="age">Age:</label><br>
+            <input type="number" id="age" name="age"><br><br>
+
+            <h2>Gender</h2>
+            <input type="radio" id="female" name="gender" value="Female">
+            <label for="female">Female</label><br>
+            <input type="radio" id="male" name="gender" value="Male">
+            <label for="male">Male</label><br>
+            <input type="radio" id="other" name="gender" value="Other">
+            <label for="other">Other</label><br>
+            <input type="radio" id="preferNotSay" name="gender" value="Prefer not to say">
+            <label for="preferNotSay">Prefer not to say</label><br><br>
+
+            <h2>Contact Information</h2>
+            <label for="mobilePhone">Mobile Phone:</label><br>
+            <input type="tel" id="mobilePhone" name="mobilePhone"><br><br>
+            <label for="emailAddress">Email Address:</label><br>
+            <input type="email" id="emailAddress" name="emailAddress"><br><br>
+
+            <h2>Club Membership</h2>
+            <select id="clubMembership" name="clubMembership">
+              <option value="">-- Select Club Membership --</option>
+              <option value="UCI-Affiliated National Federation">UCI-Affiliated National Federation</option>
+              <option value="British Cycling">British Cycling</option>
+              <option value="Fédération Française de Cyclisme">Fédération Française de Cyclisme</option>
+              <option value="Federació Catalana de Ciclisme">Federació Catalana de Ciclisme</option>
+              <option value="Other">Other</option>
+              <option value="None">None</option>
+            </select>
+            <br><br>
+            <label for="otherClubMembershipInput">If "Other", please specify:</label>
+            <input type="text" id="otherClubMembershipInput" name="otherClubMembership">
+            <br><br>
+
+            <h2>Previous Competitive Cycling Experience</h2>
+            <select id="previousCompetitiveCyclingExperience" name="previousCompetitiveCyclingExperience">
+              <option value="">-- Select Experience --</option>
+              <option value="None">None</option>
+              <option value="Local Trail/Community Races">Local Trail/Community Races</option>
+              <option value="Enduro/Downhill Regional Events">Enduro/Downhill Regional Events</option>
+              <option value="Cross-Country (XCO)">Cross-Country (XCO)</option>
+              <option value="One Season">One Season</option>
+              <option value="Two or More Seasons">Two or More Seasons</option>
+              <option value="Elite/UCI-licensed Rider">Elite/UCI-licensed Rider</option>
+            </select>
+            <br><br>
+
+            <h2>Cycling License</h2>
+            <select id="cyclingLicense" name="cyclingLicense">
+              <option value="">-- Select License --</option>
+              <option value="None">None</option>
+              <option value="National Federation License">National Federation License</option>
+              <option value="UCI License">UCI License</option>
+            </select>
+            <br><br>
+
+            <h2>Cycling License Number (if applicable)</h2>
+            <input type="text" id="licenseNumber" name="licenseNumber">
+            <h2>Emergency Contact</h2>
+            <label for="emergencyContactName">Name:</label><br>
+            <input type="text" id="emergencyContactName" name="emergencyContactName"><br><br>
+            <label for="emergencyContactRelationship">Relationship:</label><br>
+            <input type="text" id="emergencyContactRelationship" name="emergencyContactRelationship"><br><br>
+            <label for="emergencyContactPhone">Phone Number:</label><br>
+            <input type="tel" id="emergencyContactPhone" name="emergencyContactPhone"><br><br>
+
+            <h2>Rider Agreement</h2>
+            <p>I agree to abide by all rules and safety regulations of the Bike Race Series (BRS). I understand that
+              mountain biking is inherently dangerous and involves the risk of serious
+              injury or death. I acknowledge that it is my responsibility to ensure my equipment is safe and that I ride
+              within my abilities.</p>
+
+            <p>By signing below, I waive all liability and indemnify BRS, its organizers, volunteers, affiliates, and
+              the Bike Race Series (BRS) - Rider Registration Form race venues from
+              any claims or damages arising from participation in the series.</p>
+
+            <label for="riderSignature">Rider's Signature:</label><br>
+            <input type="text" id="riderSignature" name="riderSignature"><br><br>
+            <label for="riderDate">Date:</label><br>
+            <input type="date" id="riderDate" name="riderDate"><br><br>
+            <label for="parentGuardianSignature">Parent/Guardian Signature:</label><br>
+            <input type="text" id="parentGuardianSignature" name="parentGuardianSignature"><br><br>
+
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+</body>
+
+</html>

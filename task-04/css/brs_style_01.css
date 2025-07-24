@@ -1,0 +1,113 @@
+body {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.page {
+  margin: 50px;
+  padding: 20px;
+}
+
+.menu-container {
+  background-image: url("../img-02.jpg");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  height: 350px;
+  width: 100%;
+}
+
+.menu {
+  position: absolute;
+  top: -20px;
+  right: 20px;
+  padding: 10px;
+  background-color: #e0e0e0;
+  border: 1px solid #999;
+  border-radius: 4px;
+}
+
+.banner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 20px;
+}
+
+.content {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 20px;
+  font-size: 25px;
+  justify-content: center;
+  margin: 20px;
+}
+
+.content-item {
+  margin: 30px;
+  flex: 1 1 300px;
+  max-width: 500px;
+}
+
+.content-item img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  margin: 10px;
+}
+
+@media (max-width: 800px) {
+  .page {
+    margin: 20px;
+  }
+
+  .content {
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+  }
+
+  .content-item {
+    margin: 15px 0;
+    width: 100%;
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .menu {
+    top: -10px;
+    right: 10px;
+    padding: 8px;
+    font-size: 14px;
+    border-radius: 6px;
+  }
+
+  .menu a {
+    margin: 0 5px;
+    font-size: 14px;
+  }
+
+  .page {
+    margin: 10px;
+  }
+
+  .banner {
+    padding: 10px;
+  }
+
+  .content {
+    padding: 10px;
+    font-size: 18px;
+  }
+}
