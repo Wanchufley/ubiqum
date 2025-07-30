@@ -17,7 +17,9 @@
 
 </head>
 
+
 <body>
+
   <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.html">
@@ -37,8 +39,8 @@
           </li>
 
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="members.html" id="membersDropdown" role="button"
-              data-bs-toggle="dropdown" aria-expanded="false">
+            <a class="nav-link dropdown-toggle" href="#" id="membersDropdown" role="button" data-bs-toggle="dropdown"
+              aria-expanded="false">
               Members
             </a>
             <ul class="dropdown-menu" aria-labelledby="membersDropdown">
@@ -51,38 +53,54 @@
       </div>
     </div>
   </nav>
-  <div class="container my-4">
-    <h1 id="chamber-title"></h1>
-    <p id="chamber-description"></p>
-  </div>
-  <div class="container">
-    <div class="row mb-3">
-      <div class="col" id="partyFilter"></div>
-      <div class="col">
-        <select id="stateFilter" class="form-select">
+
+  <div class="wrapper">
+    <div class="content p-5 mx-auto">
+      <div class="container p-5">
+
+        <p>
+        <h1>Senators</h1>
+        </p>
+        <p>
+          First convened in 1789, the composition and powers of the Senate are established
+          in Article One of the U.S. Constitution. Each state is represented by two senators,
+          regardless of population, who serve staggered six-year terms. The Senate has
+          several exclusive powers not granted to the House, including consenting to
+          treaties as a precondition to their ratification and consenting to or confirming
+          appointments of Cabinet secretaries, federal judges, other federal executive
+          officials, military officers, regulatory officials, ambassadors, and other federal
+          uniformed officers, as well as trial of federal officials impeached by the House.
+        </p>
+      </div>
+      <div class="container">
+        <p><label for="partyFilter">Exclude by party:</label></p>
+        <div id="partyFilter" class="mb-3">
           <option value="">All</option>
-        </select>
+        </div>
+        <p><label for="stateFilter">Filter by state:</label>
+          <select id="stateFilter">
+            <option value="">All</option>
+          </select>
+        </p>
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Party</th>
+              <th>State</th>
+              <th>Title</th>
+            </tr>
+          </thead>
+          <tbody id="tableBody"></tbody>
+        </table>
+        <script type="module" src="main.js"></script>
       </div>
     </div>
 
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Party</th>
-          <th>State</th>
-          <th>Title</th>
-        </tr>
-      </thead>
-      <tbody id="tableBody">
-      </tbody>
-    </table>
   </div>
-  <script type="module" src="new-main.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="main.js"></script>
 </body>
-
 <footer class="text-black text-center py-4">
   <p class="mb-0">&copy; 2025 TGIF | All Rights Reserved</p>
 </footer>

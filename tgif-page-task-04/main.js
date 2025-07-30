@@ -6,42 +6,15 @@ const partyMap = {
 
 let originalData = [];
 
-document.addEventListener('DOMContentLoaded', () => {
-  loadChamberData();
-  document.getElementById('stateFilter').addEventListener('change', applyFilters);
-});
-
-async function loadChamberData() {
-  const params = new URLSearchParams(window.location.search);
-  let chamber = params.get('chamber');
-  if (chamber !== 'house' && chamber !== 'senate') {
-    chamber = 'senate';
-  }
-
+async function fetchData() {
   try {
-    const response = await fetch(`src/pro-congress-117-${chamber}.json`);
+    const response = await fetch('/src/pro-congress-117-senate.json');
     const data = await response.json();
     originalData = data;
-
-    updateDescription(chamber);
     populateFilters(data);
     renderTable(data);
   } catch (error) {
-    console.error('Failed to fetch data:', error);
-  }
-}
-
-
-function updateDescription(chamber) {
-  const title = document.getElementById('chamber-title');
-  const desc = document.getElementById('chamber-description');
-
-  if (chamber === 'house') {
-    title.textContent = 'House of Representatives';
-    desc.textContent = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.';
-  } else {
-    title.textContent = 'Senate';
-    desc.textContent = 'First convened in 1789, the composition and powers of the Senate are established in Article One of the U.S. Constitution. Each state is represented by two senators, regardless of population, who serve staggered six-year terms. The Senate has several exclusive powers not granted to the House, including consenting to treaties as a precondition to their ratification and consenting to or confirming appointments of Cabinet secretaries, federal judges, other federal executive officials, military officers, regulatory officials, ambassadors, and other federal uniformed officers, as well as trial of federal officials impeached by the House.';
+    console.error('Error fetching data:', error);
   }
 }
 
@@ -104,15 +77,21 @@ function populateFilters(data) {
 
 function applyFilters() {
   const selectedState = document.getElementById('stateFilter').value;
-  const selectedParties = Array.from(document.querySelectorAll('.party-checkbox:checked'))
+
+  const excludedParties = Array.from(document.querySelectorAll('.party-checkbox:checked'))
     .map(cb => cb.value);
 
   const filtered = originalData.filter(member => {
-    const partyMatch = selectedParties.length === 0 || selectedParties.includes(member.party);
+    const partyMatch = !excludedParties.includes(member.party);
     const stateMatch = !selectedState || member.state === selectedState;
     return partyMatch && stateMatch;
   });
 
   renderTable(filtered);
 }
+
+
+document.getElementById('stateFilter').addEventListener('change', applyFilters);
+
+fetchData();
 
