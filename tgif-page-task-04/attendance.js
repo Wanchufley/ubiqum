@@ -110,8 +110,8 @@ function populateEngagementTables(data) {
     pct: m.missed_votes_pct
   })));
 
-  fillEngagementTable('least-engaged', leastEngaged);
-  fillEngagementTable('most-engaged', mostEngaged);
+  fillEngagementTable('least-engaged-body', leastEngaged);
+  fillEngagementTable('most-engaged-body', mostEngaged);
 }
 
 function fillEngagementTable(tableId, members) {
