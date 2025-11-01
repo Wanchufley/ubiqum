@@ -106,5 +106,5 @@ Outcome: Parents and players don’t show up to a rained-out field, saving time 
 
 ## 3 Mock-up:
 
-[mock-up](./mock-up.png)
+![mock-up](./mock-up.png)
 
