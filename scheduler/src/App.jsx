@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from 'react';
 import './App.css';
 import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';
 
@@ -23,33 +23,54 @@ const App = () => (
 
 const terms = { F: 'Fall', W: 'Winter', S: 'Spring' };
 
-const getCourseTerm = course => (
-  terms[course.number.charAt(0)]
+const getCourseTerm = code => (
+  terms[code.charAt(0)]
 );
 
-const getCourseNumber = course => (
-  course.number.slice(1, 4)
+const getCourseNumber = code => (
+  code.slice(1)
 );
 
-const Course = ({ course }) => (
+const Course = ({ code, course }) => (
   <div className="course-list card m-2 p-2">
     <div className="card-body">
-      <div className="card-title">{getCourseTerm(course)} CS {getCourseNumber(course)}</div>
+      <div className="card-title">{getCourseTerm(code)} CS {getCourseNumber(code)}</div>
       <div className="card-text">{course.title}</div>
     </div>
   </div>
 );
 
-const CourseList = ({ courses }) => (
-  <div>
-    {Object.values(courses).map(course =>
-      <Course
-        key={`${course.term}-${course.number}`}
-        course={course}
-      />
-    )};
+
+const TermButton = ({ term, setTerm, checked }) => (
+  <>
+    <input type="radio" id={term} className="btn-check" autoComplete="off" checked={checked} onChange={() => setTerm(term)} />
+    <label className="btn btn-success m-1 p-2" htmlFor={term}>
+      {term}
+    </label>
+  </>
+);
+
+const TermSelector = ({ term, setTerm }) => (
+  <div className="btn-group">
+    {
+      Object.values(terms)
+        .map(value => <TermButton key={value} term={value} setTerm={setTerm} checked={value === term} />)
+    }
   </div>
 );
+
+const CourseList = ({ courses }) => {
+  const [term, setTerm] = useState('Fall');
+  const termCourses = Object.entries(courses).filter(([code]) => term === getCourseTerm(code));
+  return (
+    <>
+      <TermSelector term={term} setTerm={setTerm} />
+      <div className="course-list">
+        {termCourses.map(([code, course]) => <Course key={code} code={code} course={course} />)}
+      </div>
+    </>
+  );
+};
 
 const Main = () => {
   const { data: schedule, isLoading, error } = useQuery({
