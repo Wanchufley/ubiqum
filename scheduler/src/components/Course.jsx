@@ -20,7 +20,7 @@ const Course = ({ code, course, selected, setSelected }) => {
     <div className="course-list card m-2 p-2"
       style={style}
       onClick={isDisabled ? null : () => setSelected(toggle(course, selected))}
-      onDoubleClick={() => navigate('/edit', { state: course })}>
+      onDoubleClick={() => navigate('/edit', { state: { ...course, id: code } })}>
       <div className="card-body">
         <div className="card-title">{getCourseTerm(code)} CS {getCourseNumber(code)}</div>
         <div className="card-text">{course.title}</div>

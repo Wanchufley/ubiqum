@@ -34,13 +34,13 @@ const App = () => (
 );
 
 const Main = () => {
-  const [schedule, isLoading, error] = useData('/courses');
+  const [schedule, isLoading, error] = useData('/');
 
   if (isLoading) return <h1>Loading the schedule...</h1>;
   if (error) return <h1>{error.message || 'Error loading data'}</h1>;
   if (!schedule) return <h1>No schedule data found</h1>;
 
-  const processedSchedule = addScheduleTimes({ title: 'CS Courses', courses: schedule });
+  const processedSchedule = addScheduleTimes(schedule);
 
   return (
     <div className="container">

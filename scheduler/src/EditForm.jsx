@@ -1,6 +1,7 @@
 import { useLocation } from "react-router-dom";
 import { useForm } from "./useForm";
 import { timeParts } from "./utilities/times.js";
+import { updateData } from "./utilities/firebase.js";
 
 const isValidMeets = (meets) => {
   const parts = timeParts(meets);
@@ -21,15 +22,31 @@ const validateCourseData = (key, val) => {
   }
 };
 
-const submit = (values) => alert(JSON.stringify(values, null, 2));
-
 const EditForm = () => {
   const location = useLocation();
   const course = location.state || { id: "", title: "", meets: "" };
 
+  const submit = async (values) => {
+    if (window.confirm(`Change ${values.id} to ${values.title}: ${values.meets}`)) {
+      try {
+        await updateData(`/courses/${values.id}`, {
+          title: values.title,
+          meets: values.meets,
+        });
+      } catch (error) {
+        alert(error);
+      }
+    }
+  };
+
   const [values, errors, handleChange, handleSubmit] = useForm(
     validateCourseData,
-    submit
+    submit,
+    {
+      id: course.id,
+      title: course.title,
+      meets: course.meets,
+    }
   );
 
   return (

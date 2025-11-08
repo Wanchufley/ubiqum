@@ -1,12 +1,14 @@
 import { useState } from "react";
 
-export const useForm = (validate, onSubmit) => {
-  const [values, setValues] = useState({});
+export const useForm = (validate, onSubmit, initialValues) => {
+  const [values, setValues] = useState(initialValues || {});
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+    const error = validate(name, value);
     setValues({ ...values, [name]: value });
+    setErrors({ ...errors, [name]: error });
   };
 
   const handleSubmit = (e) => {

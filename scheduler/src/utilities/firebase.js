@@ -1,6 +1,6 @@
 import { useObject } from "react-firebase-hooks/database";
 import { initializeApp } from "firebase/app";
-import { getDatabase, ref } from "firebase/database";
+import { getDatabase, ref, set, update } from "firebase/database";
 
 
 const firebaseConfig = {
@@ -18,9 +18,17 @@ const database = getDatabase(firebaseApp);
 
 export const useData = (path, transform) => {
   const [snapshot, loading, error] = useObject(ref(database, path));
-  
+
   const data = snapshot && snapshot.val();
   const transformedData = transform ? transform(data) : data;
 
   return [transformedData, loading, error];
 };
+
+export const setData = (path, value) => (
+  set(ref(database, path), value)
+);
+
+export const updateData = (path, value) => (
+  update(ref(database, path), value)
+);
