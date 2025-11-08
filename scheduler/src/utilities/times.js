@@ -35,10 +35,10 @@ export const addCourseTimes = course => ({
   ...timeParts(course.meets)
 });
 
-export const addScheduleTimes = schedule => ({
+export const addScheduleTimes = schedule => schedule ? ({
   title: schedule.title,
   courses: mapValues(addCourseTimes, schedule.courses)
-});
+}) : schedule;
 
 const daysOverlap = (days1, days2) => (
   days.some(day => days1.includes(day) && days2.includes(day))

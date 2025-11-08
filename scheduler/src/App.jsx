@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useData } from './utilities/firebase.js';
 import './App.css';
 import { QueryClient, QueryClientProvider, useQuery } from '@tanstack/react-query';
 import {
@@ -31,18 +32,18 @@ const App = () => (
 );
 
 const Main = () => {
-  const { data: schedule, isLoading, error } = useQuery({
-    queryKey: ['schedule'],
-    queryFn: fetchSchedule
-  });
+  const [schedule, isLoading, error] = useData('/courses');
 
-  if (error) return <h1>{error}</h1>;
   if (isLoading) return <h1>Loading the schedule...</h1>;
+  if (error) return <h1>{error.message || 'Error loading data'}</h1>;
+  if (!schedule) return <h1>No schedule data found</h1>;
+
+  const processedSchedule = addScheduleTimes({ title: 'CS Courses for 2023-2024', courses: schedule });
 
   return (
     <div className="container">
-      <Banner title={schedule.title} />
-      <CourseList courses={schedule.courses} />
+      <Banner title={processedSchedule.title} />
+      <CourseList courses={processedSchedule.courses} />
     </div>
   );
 };
