@@ -11,6 +11,8 @@ import {
 } from './utilities/times';
 import CourseList from './components/CourseList.jsx';
 import Course from './components/Course.jsx';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import EditForm from './EditForm';
 
 const Banner = ({ title }) => (
   <h1>{title}</h1>
@@ -38,12 +40,17 @@ const Main = () => {
   if (error) return <h1>{error.message || 'Error loading data'}</h1>;
   if (!schedule) return <h1>No schedule data found</h1>;
 
-  const processedSchedule = addScheduleTimes({ title: 'CS Courses for 2023-2024', courses: schedule });
+  const processedSchedule = addScheduleTimes({ title: 'CS Courses', courses: schedule });
 
   return (
     <div className="container">
       <Banner title={processedSchedule.title} />
-      <CourseList courses={processedSchedule.courses} />
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<CourseList courses={processedSchedule.courses} />} />
+          <Route path="/edit" element={<EditForm />} />
+        </Routes>
+      </BrowserRouter>
     </div>
   );
 };
