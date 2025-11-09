@@ -46,16 +46,12 @@ const CourseList = ({ courses }) => {
   const [term, setTerm] = useState('Fall');
   const [selected, setSelected] = useState([]);
 
-  if (selected.some(course => course !== courses[course.id])) {
-    setSelected([])
-  };
-
   const termCourses = Object.entries(courses).filter(([code]) => term === getCourseTerm(code));
   return (
     <>
       <TermSelector term={term} setTerm={setTerm} />
       <div className="course-list">
-        {termCourses.map(([code, course]) => <Course key={code} code={code} course={course} selected={selected} setSelected={setSelected} />)}
+        {termCourses.map(([code, course]) => <Course key={code} code={code} course={course} selected={selected} setSelected={setSelected} allCourses={courses} />)}
       </div>
     </>
   );

@@ -57,6 +57,6 @@ const courseConflict = (course1, course2) => (
   && timeConflict(course1, course2)
 );
 
-export const hasConflict = (course, selected) => (
-  selected.some(selection => courseConflict(course, selection))
+export const hasConflict = (course, selected, allCourses) => (
+  selected.some(selectionCode => courseConflict(course, allCourses[selectionCode]))
 );
